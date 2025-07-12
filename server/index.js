@@ -2,7 +2,7 @@ const http = require('http');
 
 const myserver = http.createServer((req, res) => {
     console.log(req);
-    res.end('Hello from server AGAIN!!');
+    res.end('Hello from server!');
 });
 
-myserver.listen(8000, () => console.log("Server started!"));
+myserver.listen(8000, () => console.log("New Server started!"));
