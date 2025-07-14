@@ -1,8 +1,2 @@
-1752349665050: /about New Request received
-1752349751080: /about?name=Ritika New Request received
-1752350278250: /about?name=Ritika New Request received
-1752350283702: /about?name=Ritika New Request received
-1752350414535: /about?name=Ritika New Request received
-1752350426413: /about?name=Ritika New Request received
-1752350695631: /about?name=Ritika New Request received
-1752350824382: /about?myname=Ritika New Request received
+1752491287898: GET / New Request received
+1752491346858: GET /about New Request received
