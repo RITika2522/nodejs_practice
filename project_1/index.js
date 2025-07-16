@@ -8,6 +8,21 @@ const PORT = 8000;
 
 //Middleware - Plugin
 app.use(express.urlencoded({extended: false}));
+
+app.use((req, res, next) => {
+    fs.appendFile('log.txt',`${Date.now()} : ${req.method}: ${req.path}\n`, (err,data) =>  {next();});
+    // console.log("Hello from middleware 1");
+    // req.myUsername = "Ritika";
+    // return res.json({msg: "Respose from middleware 1"});
+    //next();
+});
+
+// app.use((req, res, next) => {
+//     console.log("Hello from middleware 2", req.myUsername);
+//     // return res.end("Hey");
+//     next();
+// });
+
 //Routes
 
 app.get('/users/', (req,res) => {
@@ -22,6 +37,7 @@ app.get('/users/', (req,res) => {
 //REST API 
 
 app.get('/api/users', (req,res) => {
+    // console.log("I am in get route", req.myUsername);
     return res.json(users);
 });
 
