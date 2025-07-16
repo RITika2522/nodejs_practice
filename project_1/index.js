@@ -38,6 +38,8 @@ app.get('/users/', (req,res) => {
 
 app.get('/api/users', (req,res) => {
     // console.log("I am in get route", req.myUsername);
+    res.setHeader("newHeader","Ritika Chandak");
+    //Good practice to add X before custome headers
     return res.json(users);
 });
 
