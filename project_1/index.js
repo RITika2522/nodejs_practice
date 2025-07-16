@@ -47,6 +47,7 @@ app.route("/api/users/:id")
 .get((req,res) => {
     const id = Number(req.params.id);
     const user = users.find((user) => user.id === id);
+    if(!user)return res.status(404).json({error: "User not found"});
     return res.json(user);
 })
 .put((req,res) => {
@@ -61,7 +62,7 @@ app.route("/api/users/:id")
     users[user] = { ...users[user], ...req.body };
     fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err) => {
         if (err) return res.status(500).json({ status: "Error updating user" });
-        return res.json({ status: "User updated", user: users[user]  });
+        return res.status(205).json({ status: "User updated", user: users[user]  });
     });
     
     
@@ -82,9 +83,12 @@ app.route("/api/users/:id")
 
 app.post('/api/users',(req,res) => {
     const body = req.body;
+    if(!body ||!body.first_name || !body.last_name || !body.email || !body.job_title){
+        return res.status(400).json({status: "Bad Request", message: "Please provide all required fields"});
+    }
     users.push({...body, id: users.length + 1});
     fs.writeFile('./MOCK_DATA.json', JSON.stringify(users),(err, data) => {
-        return res.json({status: "Success", id: users.length});
+        return res.status(201).json({status: "Success", id: users.length});
     });
     
 });
